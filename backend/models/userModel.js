@@ -1,4 +1,3 @@
-// src/models/userModel.js
 const db = require("../config/database");
 
 const User = {
@@ -16,14 +15,14 @@ const User = {
     const query =
       "INSERT INTO users (email, password, name, role) VALUES (?, ?, ?, ?)";
 
-    // Default to 'USER' if role is not provided
+    // Default to 'USER'
     const userRole = role || "USER";
 
     const [result] = await db.query(query, [email, password, name, userRole]);
     return result.insertId;
   },
 
-  // Find user by ID (useful for profile checks)
+  // Find user by ID
   findById: async (id) => {
     const [rows] = await db.query(
       "SELECT id, email, name, role FROM users WHERE id = ?",

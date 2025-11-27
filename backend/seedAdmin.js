@@ -14,19 +14,19 @@ const seedAdmin = async () => {
     connection = await mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "", // Using no password as per your setup
+      password: "",
       database: "fayda_db",
     });
 
     console.log("🔌 Connected to MySQL...");
 
-    // 2. Admin Credentials
+    //  Admin Credentials
     const adminEmail = "admin@fayda.com";
     const adminPassword = "admin123";
     const adminName = "Super Admin";
     const adminRole = "ADMIN";
 
-    // 3. Check if Admin already exists
+    //  Check if Admin already exists
     const [existingUsers] = await connection.execute(
       "SELECT * FROM users WHERE email = ?",
       [adminEmail]

@@ -1,4 +1,3 @@
-// FAYDA/middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel"); // Import the Model
 const SECRET_KEY = process.env.JWT_SECRET || "secret_key";

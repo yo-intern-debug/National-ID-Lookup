@@ -1,12 +1,10 @@
-// src/controllers/authController.js
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const SECRET_KEY = process.env.JWT_SECRET || "secret_key";
 
-// 1. LOGIN (Public - stays the same)
+//login function
 const login = async (req, res) => {
-  // ... (keep your existing login code exactly as it is) ...
   try {
     const { email, password } = req.body;
     const user = await User.findByEmail(email);
@@ -16,7 +14,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
 
     const token = jwt.sign({ userId: user.id, role: user.role }, SECRET_KEY, {
-      expiresIn: "2h",
+      expiresIn: "7d",
     });
     res.json({
       message: "Login successful",
@@ -29,8 +27,8 @@ const login = async (req, res) => {
   }
 };
 
-// 2. CREATE USER (Protected - Admin Only)
-// This handles creating USER, ADMIN, or MODERATOR
+// create user function (user & admin)
+
 const createUser = async (req, res) => {
   try {
     const { email, password, name, role } = req.body;
@@ -42,14 +40,14 @@ const createUser = async (req, res) => {
         .json({ message: "Email, password, and name are required" });
     }
 
-    // Validate Role (Optional: default to USER if not sent)
-    const validRoles = ["USER", "ADMIN", "MODERATOR"];
+    // Validate Role
+    const validRoles = ["USER", "ADMIN"];
     const userRole = role ? role.toUpperCase() : "USER";
 
     if (!validRoles.includes(userRole)) {
       return res
         .status(400)
-        .json({ message: "Invalid role. Choose USER, ADMIN, or MODERATOR" });
+        .json({ message: "Invalid role. Choose USER, ADMIN" });
     }
 
     // Check if user exists
@@ -79,9 +77,8 @@ const createUser = async (req, res) => {
   }
 };
 
-// 3. LOGOUT (Keep existing)
+// logout function
 const logout = async (req, res) => {
-  // ... (keep your existing logout code) ...
   try {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
