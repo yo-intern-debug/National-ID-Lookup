@@ -1,20 +1,20 @@
 [
   {
     "id": "123456789",
-    "firstName": "Yordanos Tesfaye",
+    "firstName": "John",
     "lastName": "Doe",
     "age": 28,
     "dob": "1997-04-15",
     "address": "Addis Ababa, Ethiopia",
-    "photo": "https://via.placeholder.com/150"  
+    "photo": "/photos/man.jpg"  
   },
   {
     "id": "987654321",
-    "firstName": "Michael Abebe",
+    "firstName": "Michael",
     "lastName": "Abebe",
     "age": 32,
     "dob": "1993-10-10",
     "address": "Bahir Dar, Ethiopia",
-    "photo": "https://via.placeholder.com/150"
+    "photo": "/photos/woman.jpg"
   }
 ]
