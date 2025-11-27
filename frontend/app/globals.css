@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Make full layout take the screen */
+html, body, #__next {
+  height: 100%;
+}
+
+/* Base font */
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+/* ================================
+   NBE BRAND COLOR SYSTEM
+   ================================ */
+:root {
+  --background: #F5F6FA;      /* Light NBE background */
+  --foreground: #1A1A1A;      /* Dark text */
+
+  /* NBE primary brand colors */
+  --nbe-blue: #003366;        /* Deep Blue */
+  --nbe-gold: #D4AF37;        /* Gold */
+
+  /* Optional UI neutrals */
+  --card-bg: #ffffff;
+  --border-light: #e5e5e5;
+}
+
+/* Tailwind theme expansion */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-nbe-blue: var(--nbe-blue);
+  --color-nbe-gold: var(--nbe-gold);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Dark mode (if supported) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+
+    --card-bg: #111111;
+    --border-light: #333333;
+  }
+}
+
+/* Apply root colors */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
